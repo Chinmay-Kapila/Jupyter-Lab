@@ -1,0 +1,71 @@
+original,themed
+ACK Flag Count,Stark_ACK
+Active Max,Watcher_Active_Max
+Active Mean,Watcher_Active_Mean
+Active Min,Watcher_Active_Min
+Active Std,Watcher_Active_Std
+Average Packet Size,Rocket_Average_Packet_Size
+Avg Bwd Segment Size,Nat_Avg_Bwd_Segment_Size
+Avg Fwd Segment Size,Cap_Avg_Fwd_Segment_Size
+Bwd Header Length,Nat_Bwd_Header_Length
+Bwd IAT Max,Nat_Bwd_IAT_Max
+Bwd IAT Mean,Nat_Bwd_IAT_Mean
+Bwd IAT Min,Nat_Bwd_IAT_Min
+Bwd IAT Std,Nat_Bwd_IAT_Std
+Bwd IAT Total,Nat_Bwd_IAT_Total
+Bwd Packet Length Max,Nat_Bwd_Packet_Length_Max
+Bwd Packet Length Mean,Nat_Bwd_Packet_Length_Mean
+Bwd Packet Length Min,Nat_Bwd_Packet_Length_Min
+Bwd Packet Length Std,Nat_Bwd_Packet_Length_Std
+Bwd Packets/s,Nat_Bwd_PacketsPers
+CWE Flag Count,Stark_CWE_Flag_Count
+Destination Port,SHIELD_DestinationPort
+Down/Up Ratio,SHIELD_DownPerUp_Ratio
+ECE Flag Count,Stark_ECE_Flag_Count
+FIN Flag Count,Stark_FIN_Flag_Count
+Flow Bytes/s,Quinjet_BytesPerSec
+Flow Duration,TimeStone_FlowDuration
+Flow IAT Max,Strange_Flow_IAT_Max
+Flow IAT Mean,Strange_Flow_IAT_Mean
+Flow IAT Min,Strange_Flow_IAT_Min
+Flow IAT Std,Strange_Flow_IAT_Std
+Flow Packets/s,Quinjet_PacketsPerSec
+Fwd Header Length,Cap_Fwd_Header_Length
+Fwd Header Length.1,Cap_Fwd_Header_Length.1
+Fwd IAT Max,Cap_Fwd_IAT_Max
+Fwd IAT Mean,Cap_Fwd_IAT_Mean
+Fwd IAT Min,Cap_Fwd_IAT_Min
+Fwd IAT Std,Cap_Fwd_IAT_Std
+Fwd IAT Total,Cap_Fwd_IAT_Total
+Fwd PSH Flags,Cap_Fwd_PSH_Flags
+Fwd Packet Length Max,Cap_Fwd_Packet_Length_Max
+Fwd Packet Length Mean,Cap_Fwd_Packet_Length_Mean
+Fwd Packet Length Min,Cap_Fwd_Packet_Length_Min
+Fwd Packet Length Std,Cap_Fwd_Packet_Length_Std
+Fwd Packets/s,Cap_Fwd_PacketsPers
+Fwd URG Flags,Cap_Fwd_URG_Flags
+Idle Max,Watcher_Idle_Max
+Idle Mean,Watcher_Idle_Mean
+Idle Min,Watcher_Idle_Min
+Idle Std,Watcher_Idle_Std
+Init_Win_bytes_backward,Vision_Init_Win_bytes_backward
+Init_Win_bytes_forward,Vision_Init_Win_bytes_forward
+Max Packet Length,Rocket_Max_Packet_Length
+Min Packet Length,Rocket_Min_Packet_Length
+PSH Flag Count,Stark_PSH_Flag_Count
+Packet Length Mean,Rocket_Packet_Length_Mean
+Packet Length Std,Rocket_Packet_Length_Std
+Packet Length Variance,Rocket_Packet_Length_Variance
+RST Flag Count,Stark_RST_Flag_Count
+SYN Flag Count,Stark_SYN
+Subflow Bwd Bytes,Nat_Subflow_Bwd_Bytes
+Subflow Bwd Packets,Nat_Subflow_Bwd_Packets
+Subflow Fwd Bytes,Cap_Subflow_Fwd_Bytes
+Subflow Fwd Packets,Cap_Subflow_Fwd_Packets
+Total Backward Packets,Nat_Total_Backward_Packets
+Total Fwd Packets,Cap_Total_Fwd_Packets
+Total Length of Bwd Packets,Nat_Total_Length_of_Bwd_Packets
+Total Length of Fwd Packets,Cap_Total_Length_of_Fwd_Packets
+URG Flag Count,Stark_URG_Flag_Count
+act_data_pkt_fwd,SHIELD_act_data_pkt_fwd
+min_seg_size_forward,SHIELD_min_seg_size_forward

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+opencv-python
+numpy
+requests
+matplotlib
+faster-whisper
+sentence-transformers

@@ -1,0 +1,8 @@
+Label,LabelName
+0,BENIGN
+1,DDoS
+2,PortScan
+3,DoS
+4,Patator
+5,WebAttack
+6,Bot

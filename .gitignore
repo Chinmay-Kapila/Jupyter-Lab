@@ -1,0 +1,38 @@
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+*-checkpoint.py
+*-checkpoint.txt
+
+# Python cache & compiled bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+miniconda3/
+
+# Executables & Drivers
+chromedriver.exe
+*.exe
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Large files exceeding GitHub 100MB limit
+# Model Wars/train.csv is 220.6 MB (uncompressed). GitHub blocks pushes with files > 100 MB.
+# Excluded from git commit to prevent push failure (preserved safely in C: drive and D: drive).
+Model Wars/train.csv

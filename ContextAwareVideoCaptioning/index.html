@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Context-Aware Video Captioning</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 60px auto;
+        text-align: center;
+        color: #222;
+    }
+    h1 {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    h2 {
+        font-size: 20px;
+        margin-top: 60px;
+        margin-bottom: 20px;
+        border-top: 1px solid #ddd;
+        padding-top: 40px;
+    }
+    input[type="file"] {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+    button {
+        padding: 10px 22px;
+        font-size: 15px;
+        border: none;
+        border-radius: 6px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+    }
+    button:disabled {
+        background-color: #93a5c4;
+        cursor: not-allowed;
+    }
+    .loading {
+        margin-top: 20px;
+        display: none;
+        color: #555;
+    }
+    .result {
+        margin-top: 30px;
+        padding: 18px;
+        border-radius: 8px;
+        background-color: #f3f4f6;
+        display: none;
+        text-align: left;
+    }
+    .result-caption {
+        font-style: italic;
+        font-size: 17px;
+    }
+    video {
+        width: 100%;
+        margin-top: 12px;
+        border-radius: 6px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Context-Aware Video Captioning</h1>
+
+<input type="file" id="videoInput" accept="video/*"><br>
+<button id="analyzeBtn">Analyze Video</button>
+
+<div class="loading" id="captionLoading">Analyzing video, please wait...</div>
+
+<div class="result" id="captionResult">
+    <strong>Caption:</strong>
+    <p class="result-caption" id="resultCaption"></p>
+    <small id="frameCount"></small>
+</div>
+
+<h2>Semantic Video Search</h2>
+
+<input type="text" id="searchInput" placeholder="Type what video you want..."><br>
+<button id="searchBtn">Search</button>
+
+<div class="loading" id="searchLoading">Searching...</div>
+
+<div class="result" id="searchResult">
+    <div id="searchNoMatch" style="display:none;">No matching video found.</div>
+    <div id="searchMatch" style="display:none;">
+        <strong>Matching Video:</strong>
+        <p id="matchVideoId"></p>
+        <strong>Caption:</strong>
+        <p class="result-caption" id="matchCaption"></p>
+        <video id="matchPlayer" controls></video>
+    </div>
+</div>
+
+<script>
+    // ---------------- Captioning section ----------------
+    const analyzeBtn = document.getElementById("analyzeBtn");
+    const videoInput = document.getElementById("videoInput");
+    const captionLoading = document.getElementById("captionLoading");
+    const captionResult = document.getElementById("captionResult");
+    const resultCaption = document.getElementById("resultCaption");
+    const frameCount = document.getElementById("frameCount");
+
+    analyzeBtn.addEventListener("click", async () => {
+        if (!videoInput.files.length) {
+            alert("Please choose a video first.");
+            return;
+        }
+
+        captionResult.style.display = "none";
+        captionLoading.style.display = "block";
+        analyzeBtn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("video", videoInput.files[0]);
+
+        try {
+            const response = await fetch("/caption", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Something went wrong.");
+            }
+
+            resultCaption.textContent = data.caption;
+            frameCount.textContent = `(${data.frames_analyzed} frames analyzed)`;
+            captionResult.style.display = "block";
+        } catch (err) {
+            alert("Error: " + err.message);
+        } finally {
+            captionLoading.style.display = "none";
+            analyzeBtn.disabled = false;
+        }
+    });
+
+    // ---------------- Semantic search section ----------------
+    const searchBtn = document.getElementById("searchBtn");
+    const searchInput = document.getElementById("searchInput");
+    const searchLoading = document.getElementById("searchLoading");
+    const searchResult = document.getElementById("searchResult");
+    const searchNoMatch = document.getElementById("searchNoMatch");
+    const searchMatch = document.getElementById("searchMatch");
+    const matchVideoId = document.getElementById("matchVideoId");
+    const matchCaption = document.getElementById("matchCaption");
+    const matchPlayer = document.getElementById("matchPlayer");
+
+    searchBtn.addEventListener("click", async () => {
+        const query = searchInput.value.trim();
+        if (!query) {
+            alert("Please type what video you're looking for.");
+            return;
+        }
+
+        searchResult.style.display = "none";
+        searchNoMatch.style.display = "none";
+        searchMatch.style.display = "none";
+        searchLoading.style.display = "block";
+        searchBtn.disabled = true;
+
+        try {
+            const response = await fetch("/search", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query }),
+            });
+            const data = await response.json();
+
+            if (data.found) {
+                matchVideoId.textContent = data.video_id;
+                matchCaption.textContent = `"${data.caption}" (similarity: ${data.similarity})`;
+                matchPlayer.src = data.video_path;
+                searchMatch.style.display = "block";
+            } else {
+                searchNoMatch.textContent = data.message || "No matching video found.";
+                searchNoMatch.style.display = "block";
+            }
+            searchResult.style.display = "block";
+        } catch (err) {
+            alert("Error: " + err.message);
+        } finally {
+            searchLoading.style.display = "none";
+            searchBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
